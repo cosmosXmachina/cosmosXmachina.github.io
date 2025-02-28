@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COSMOS EX MACHINA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+    
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+    
+    .cosmic-background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .title-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .title {
+      font-size: 5vw;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(116, 182, 255, 0.8),
+                   0 0 20px rgba(94, 151, 255, 0.6),
+                   0 0 30px rgba(65, 129, 255, 0.4);
+      letter-spacing: 5px;
+      background: linear-gradient(to right, #37d5d6, #36096d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: pulsate 3s infinite alternate;
+    }
+    
+    @keyframes pulsate {
+      0% {
+        text-shadow: 0 0 10px rgba(116, 182, 255, 0.8),
+                     0 0 20px rgba(94, 151, 255, 0.6),
+                     0 0 30px rgba(65, 129, 255, 0.4);
+      }
+      100% {
+        text-shadow: 0 0 15px rgba(116, 182, 255, 0.9),
+                     0 0 25px rgba(94, 151, 255, 0.7),
+                     0 0 35px rgba(65, 129, 255, 0.5),
+                     0 0 45px rgba(44, 111, 255, 0.3);
+      }
+    }
+
+    .subtitle {
+      font-size: 1.5vw;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 20px;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg class="cosmic-background" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <!-- Radial gradient for the background -->
+        <radialGradient id="cosmos-gradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#1a0033" />
+          <stop offset="40%" stop-color="#0c001f" />
+          <stop offset="90%" stop-color="#000005" />
+          <stop offset="100%" stop-color="#000000" />
+        </radialGradient>
+        
+        <!-- Star filter -->
+        <filter id="star-glow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+
+        <!-- Nebula gradient -->
+        <radialGradient id="nebula1" cx="30%" cy="30%" r="50%" fx="30%" fy="30%">
+          <stop offset="0%" stop-color="rgba(114, 9, 183, 0.6)" />
+          <stop offset="50%" stop-color="rgba(86, 11, 173, 0.4)" />
+          <stop offset="100%" stop-color="rgba(58, 12, 163, 0)" />
+        </radialGradient>
+
+        <radialGradient id="nebula2" cx="70%" cy="60%" r="40%" fx="70%" fy="60%">
+          <stop offset="0%" stop-color="rgba(11, 72, 107, 0.6)" />
+          <stop offset="60%" stop-color="rgba(17, 85, 123, 0.3)" />
+          <stop offset="100%" stop-color="rgba(23, 97, 139, 0)" />
+        </radialGradient>
+
+        <!-- Hypergeometric patterns -->
+        <pattern id="hypergeometric" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5" />
+          <line x1="100" y1="0" x2="0" y2="100" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5" />
+          <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5" />
+          <polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="rgba(255, 255, 255, 0.1)" stroke-width="0.5" />
+        </pattern>
+      </defs>
+      
+      <!-- Background -->
+      <rect width="100%" height="100%" fill="url(#cosmos-gradient)" />
+      
+      <!-- Nebulae -->
+      <ellipse cx="30%" cy="30%" rx="40%" ry="30%" fill="url(#nebula1)" opacity="0.7" />
+      <ellipse cx="70%" cy="60%" rx="35%" ry="25%" fill="url(#nebula2)" opacity="0.6" />
+      
+      <!-- Hypergeometric patterns -->
+      <rect width="100%" height="100%" fill="url(#hypergeometric)" opacity="0.3" />
+      
+      <!-- Generate stars with JavaScript -->
+      <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+          const svg = document.querySelector('.cosmic-background');
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          
+          // Generate stars
+          for (let i = 0; i < 200; i++) {
+            const x = Math.random() * width;
+            const y = Math.random() * height;
+            const radius = Math.random() * 1.5 + 0.5;
+            const opacity = Math.random() * 0.8 + 0.2;
+            
+            const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            star.setAttribute("cx", x);
+            star.setAttribute("cy", y);
+            star.setAttribute("r", radius);
+            star.setAttribute("fill", "white");
+            star.setAttribute("opacity", opacity);
+            
+            if (Math.random() > 0.7) {
+              star.setAttribute("filter", "url(#star-glow)");
+              
+              // Add animation for twinkling stars
+              const animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+              animate.setAttribute("attributeName", "opacity");
+              animate.setAttribute("values", `${opacity};${opacity/2};${opacity}`);
+              animate.setAttribute("dur", `${Math.random() * 5 + 2}s`);
+              animate.setAttribute("repeatCount", "indefinite");
+              star.appendChild(animate);
+            }
+            
+            svg.appendChild(star);
+          }
+          
+          // Generate geometric shapes
+          for (let i = 0; i < 10; i++) {
+            const x = Math.random() * width;
+            const y = Math.random() * height;
+            const size = Math.random() * 100 + 50;
+            const opacity = Math.random() * 0.1 + 0.05;
+            
+            const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            
+            // Create a regular polygon
+            const points = [];
+            const sides = Math.floor(Math.random() * 4) + 3; // 3 to 6 sides
+            for (let j = 0; j < sides; j++) {
+              const angle = (j / sides) * Math.PI * 2;
+              const ptX = x + size * Math.cos(angle);
+              const ptY = y + size * Math.sin(angle);
+              points.push(`${ptX},${ptY}`);
+            }
+            
+            shape.setAttribute("points", points.join(" "));
+            shape.setAttribute("fill", "none");
+            shape.setAttribute("stroke", "rgba(255, 255, 255, 0.15)");
+            shape.setAttribute("stroke-width", "0.5");
+            shape.setAttribute("opacity", opacity);
+            
+            // Add slow rotation animation
+            const animateTransform = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+            animateTransform.setAttribute("attributeName", "transform");
+            animateTransform.setAttribute("type", "rotate");
+            animateTransform.setAttribute("from", `0 ${x} ${y}`);
+            animateTransform.setAttribute("to", `360 ${x} ${y}`);
+            animateTransform.setAttribute("dur", `${Math.random() * 100 + 100}s`);
+            animateTransform.setAttribute("repeatCount", "indefinite");
+            shape.appendChild(animateTransform);
+            
+            svg.appendChild(shape);
+          }
+        });
+      </script>
+    </svg>
+    
+    <div class="title-container">
+      <h1 class="title">COSMOS EX MACHINA</h1>
+      <p class="subtitle">EXPLORING THE DIGITAL UNIVERSE</p>
+    </div>
+  </div>
+</body>
+</html>
